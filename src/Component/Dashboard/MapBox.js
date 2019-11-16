@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import ReactMapGL from 'react-map-gl';
+import ReactMapGL,{Marker} from 'react-map-gl';
 import {Card,CardBody, CardHeader,Nav,NavItem,NavLink} from "shards-react"
+// import HeatMap from "./subcomponent/HeatMap"
 // import {Nav} from "react-bo"
 // import { CardHeader } from 'react-bootstrap/Card';
 export default class MapBox extends Component {
@@ -9,8 +10,8 @@ export default class MapBox extends Component {
     
         this.state = {
             viewport: {
-                width: 345,
-                height: 250,
+                width: "100%",
+                height: 350,
                 latitude: 37.7577,
                 longitude: -122.4376,
                 zoom: 13
@@ -48,7 +49,7 @@ export default class MapBox extends Component {
             <div>
                 <Card>
                 <CardBody>
-                <Nav tabs justified>
+                <Nav tabs justified> 
       {/* <NavItem >
         <NavLink active={this.state.mapView===0?true:false} onClick={this.onSelect.bind(this,0)}>Normal</NavLink>
       </NavItem> */}
@@ -68,7 +69,12 @@ export default class MapBox extends Component {
         onViewportChange={(viewport) => this.setState({viewport})}
         mapboxApiAccessToken={"pk.eyJ1IjoibmFtYmlhcnNpZGhhcnRoIiwiYSI6ImNrMzA2cTZwMDBhdmgzYnFzZmJuaTRkeTgifQ.MAnlhMbC3SBJfrNJ_DOPvw"}
             onClick={this.coordinateClick}
-      />
+      >
+          <Marker latitude={this.state.viewport.latitude} longitude={this.state.viewport.longitude} offsetLeft={-20} offsetTop={-10}>
+          <div>You are here</div>
+        </Marker>
+        </ReactMapGL>
+        {/* <HeatMap viewport={this.state.viewport} /> */}
       </CardBody>
         </Card>
             </div>

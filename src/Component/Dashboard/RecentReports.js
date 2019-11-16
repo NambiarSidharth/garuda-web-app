@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {Row,Col,Spinner, Card}from "react-bootstrap"
 import {firebase} from "../../utils/Firebase"
-
+import {Link} from "react-router-dom"
 export default class RecentReports extends Component {
     constructor(props) {
         super(props)
@@ -28,20 +28,32 @@ var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
         let view;
         if(this.state.reports){
             view = Object.keys(this.state.reports).map((key,i)=>{
-                return  <Col><Card style={{ maxWidth: "200px" }} >
-                    <Card.Body>
-                        reports
-                    </Card.Body>
-                    </Card></Col>
+            return   <Link to={`/reports/${key}`}><li className="list-group-item mv2">{this.state.reports[key].type}</li></Link>
+ 
+                // <Card style={{ maxWidth: "200px" }} className="dim mv3" >
+                //     <Card.Body>
+                //         {this.state.reports[key].type}
+                //     </Card.Body>
+                //     {/* <Card.Footer>
+                //     <Link to={`/reports/${key}`} className="btn btn-primary">Analyze</Link>
+                //     </Card.Footer> */}
+                //     </Card>
             })
         }else{
             view = <Spinner animation="grow" variant="primary" />
         }
         return (
             <div className="mt4">
-                <Row>
-                        {view}
-                </Row>
+                       <div>
+                           <h4>Recent Reports</h4>
+                        </div>
+                        <hr />
+                       <div>
+                       <ul class="list-group">
+  {view}
+</ul>
+                        </div>
+                
             </div>
         )
     }

@@ -29,6 +29,7 @@ function App() {
         <Route exact path='/auth' component={Login} />
         <Route exact path='/dashboard' component={Dashboard} />
         <Route exact path='/reports' component={Reports} />
+        <Route exact path='/reports/:id' component={Report} />
         </div>
       </Router>
       </Provider>

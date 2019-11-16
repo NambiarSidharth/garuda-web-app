@@ -51,7 +51,7 @@ export default class Dashboard extends Component {
                 {this.state.latitude?<div>
                 {/* <Notifications /> */}
                 <Row>
-                    <Col md={8}>
+                    <Col md={10}>
                     {/* <Map center={[this.state.latitude, this.state.longitude]} zoom={9} width={600} height={400} onClick={this.mapChangeEvent}>
     <Marker anchor={[this.state.latitude, this.state.longitude]} payload={1} onClick={({ event, anchor, payload }) => {
         console.log(event,anchor,payload)
@@ -66,10 +66,7 @@ export default class Dashboard extends Component {
   </Map>
   <div>
 </div> */}
-<RecentReports />
-                    </Col>
-                        <Col md={4}>
-                            <Row className="mv3">
+<Row className="mv3">
                                 <Col>
                                 <Weather />
                                 </Col>
@@ -83,6 +80,12 @@ export default class Dashboard extends Component {
                             <Row className="mv3">
                             <Graph />
                             </Row>
+
+                    </Col>
+                        <Col md={2}>
+                            <div>
+                        <RecentReports />
+                            </div>
                         </Col>
                 </Row>
                 <Row>
