@@ -14,10 +14,10 @@ export default class MapBox extends Component {
     
         this.state = {
             viewport: {
-                width: "100%",
+                width: 400,
                 height: 350,
-                latitude: 37.7577,
-                longitude: -122.4376,
+                latitude: 12.9716,
+                longitude: 77.5946,
                 zoom: 13
               },
               mapView:1,
@@ -28,8 +28,8 @@ export default class MapBox extends Component {
     }
     componentDidMount(){
         let data = this.state.viewport;
-        data.latitude = this.props.latitude;
-        data.longitude = this.props.longitude;
+        // data.latitude = this.props.longitude;
+        // data.longitude = this.props.latitude;
 
         this.setState({viewport:data,reports:this.props.reports})
     }
@@ -40,8 +40,20 @@ export default class MapBox extends Component {
         console.log(e)
     }
     render() {
-        let styleSheet=null
-        const {reports} = this.state;
+        let styleSheet=null,markers=null
+        const {reports} = this.state
+        if(reports){
+            markers=Object.keys(reports).map(obj=>{
+                console.log(reports[obj].coordinates)
+              return reports[obj].coordinates?<Marker latitude={reports[obj].coordinates.latitude} longitude={reports[obj].coordinates.longitude}>
+      <Button variant="danger">
+          AA
+      </Button>
+          </Marker>:null
+            })
+        }else{
+            markers=null
+        }
         switch(this.state.mapView){
             case 0:
                 styleSheet='mapbox://mapbox.mapbox-streets-v7'
@@ -77,14 +89,7 @@ export default class MapBox extends Component {
         mapboxApiAccessToken={"pk.eyJ1IjoibmFtYmlhcnNpZGhhcnRoIiwiYSI6ImNrMzA2cTZwMDBhdmgzYnFzZmJuaTRkeTgifQ.MAnlhMbC3SBJfrNJ_DOPvw"}
             onClick={this.coordinateClick}
       >
-          {reports?Object.keys(reports).map(obj=>{
-              console.log(obj)
-            return reports[obj].coordinates?<Marker key={obj} latitude={reports[obj].coordinates.latitude} longitude={reports[obj].coordinates.longitude}>
-<Button>
-    <img src={Collision} alt="alternate" />
-</Button>
-        </Marker>:null
-          }):null}
+          {markers}
         </ReactMapGL>
         {/* <HeatMap viewport={this.state.viewport} /> */}
       </CardBody>

@@ -46,6 +46,7 @@ export default class Dashboard extends Component {
     getReports(){
         firebase.database().ref('reports').once('value').then(snapshot=>{
             const data = snapshot.val()
+            console.log(data)
             this.setState({reports:data})
         })
         .catch(err=>{
@@ -86,7 +87,7 @@ export default class Dashboard extends Component {
                             </Row>
                             <Row className="mv3">
                             <Col>
-{    this.state.latitude?<MapBox reports={this.state.reports} latitude={this.state.latitude} longitude={this.state.longitude} />
+{    this.state.latitude && this.state.reports?<MapBox reports={this.state.reports} latitude={this.state.latitude} longitude={this.state.longitude} />
 :<Spinner animation="grow" variant="primary" />}
                     </Col>
                             </Row>
