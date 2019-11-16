@@ -8,6 +8,7 @@ import Overlay from 'pigeon-overlay'
 import MapBox from "./MapBox"
 import Graph from "./Graph"
 import RecentReports from "./RecentReports"
+import {firebase} from "../../utils/Firebase"
 export default class Dashboard extends Component {
     constructor(props) {
         super(props)
@@ -16,10 +17,12 @@ export default class Dashboard extends Component {
             latitude:null,
             longitude:null,
             chosenlatitude:null,
-            chosenlongitutde:null
+            chosenlongitutde:null,
+            reports:null
             // data:null
        }
        this.mapChangeEvent = this.mapChangeEvent.bind(this)
+       this.getReports = this.getReports.bind(this)
     }
 
     componentDidMount(){
@@ -38,6 +41,16 @@ export default class Dashboard extends Component {
             // reject(false)
           })
         }
+        this.getReports()
+    }
+    getReports(){
+        firebase.database().ref('reports').once('value').then(snapshot=>{
+            const data = snapshot.val()
+            this.setState({reports:data})
+        })
+        .catch(err=>{
+            console.log(err)
+        })
     }
     mapChangeEvent(e){
         this.setState({
@@ -73,7 +86,7 @@ export default class Dashboard extends Component {
                             </Row>
                             <Row className="mv3">
                             <Col>
-{    this.state.latitude?<MapBox latitude={this.state.latitude} longitude={this.state.longitude} />
+{    this.state.latitude?<MapBox reports={this.state.reports} latitude={this.state.latitude} longitude={this.state.longitude} />
 :<Spinner animation="grow" variant="primary" />}
                     </Col>
                             </Row>

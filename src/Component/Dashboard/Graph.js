@@ -101,7 +101,7 @@ export default class Graph extends Component {
 			<img src={HeatMap} alt="graph" />
 			</Col>
 		</Row>:null}
-		</div>
+7		</div>
 		);
 	}
 	

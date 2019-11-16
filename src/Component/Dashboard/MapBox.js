@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import ReactMapGL,{Marker} from 'react-map-gl';
+import Collision from "./subcomponent/car-collision.svg"
+import {firebase} from "../../utils/Firebase"
+
 import {Card,CardBody, CardHeader,Nav,NavItem,NavLink} from "shards-react"
+import { Button } from 'react-bootstrap';
 // import HeatMap from "./subcomponent/HeatMap"
 // import {Nav} from "react-bo"
 // import { CardHeader } from 'react-bootstrap/Card';
@@ -16,7 +20,8 @@ export default class MapBox extends Component {
                 longitude: -122.4376,
                 zoom: 13
               },
-              mapView:1
+              mapView:1,
+              reports:null
         }
         this.coordinateClick = this.coordinateClick.bind(this)
         this.onSelect = this.onSelect.bind(this)
@@ -25,7 +30,8 @@ export default class MapBox extends Component {
         let data = this.state.viewport;
         data.latitude = this.props.latitude;
         data.longitude = this.props.longitude;
-        this.setState({viewport:data})
+
+        this.setState({viewport:data,reports:this.props.reports})
     }
     onSelect(num){
         this.setState({mapView:num})
@@ -35,6 +41,7 @@ export default class MapBox extends Component {
     }
     render() {
         let styleSheet=null
+        const {reports} = this.state;
         switch(this.state.mapView){
             case 0:
                 styleSheet='mapbox://mapbox.mapbox-streets-v7'
@@ -65,14 +72,19 @@ export default class MapBox extends Component {
                 
                  <ReactMapGL
         {...this.state.viewport}
-        mapStyle={styleSheet}
+        // mapStyle={styleSheet}
         onViewportChange={(viewport) => this.setState({viewport})}
         mapboxApiAccessToken={"pk.eyJ1IjoibmFtYmlhcnNpZGhhcnRoIiwiYSI6ImNrMzA2cTZwMDBhdmgzYnFzZmJuaTRkeTgifQ.MAnlhMbC3SBJfrNJ_DOPvw"}
             onClick={this.coordinateClick}
       >
-          <Marker latitude={this.state.viewport.latitude} longitude={this.state.viewport.longitude} offsetLeft={-20} offsetTop={-10}>
-          <div>You are here</div>
-        </Marker>
+          {reports?Object.keys(reports).map(obj=>{
+              console.log(obj)
+            return reports[obj].coordinates?<Marker key={obj} latitude={reports[obj].coordinates.latitude} longitude={reports[obj].coordinates.longitude}>
+<Button>
+    <img src={Collision} alt="alternate" />
+</Button>
+        </Marker>:null
+          }):null}
         </ReactMapGL>
         {/* <HeatMap viewport={this.state.viewport} /> */}
       </CardBody>
