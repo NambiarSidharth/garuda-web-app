@@ -9,6 +9,9 @@ import MapBox from "./MapBox"
 import Graph from "./Graph"
 import RecentReports from "./RecentReports"
 import {firebase} from "../../utils/Firebase"
+
+import Box from '@material-ui/core/Box';
+
 export default class Dashboard extends Component {
     constructor(props) {
         super(props)
@@ -62,24 +65,14 @@ export default class Dashboard extends Component {
     render() {
         return (
             <div>
-                {this.state.latitude?<div>
-                {/* <Notifications /> */}
+                <Row>
+                    <Col>
+                    
+                    </Col>
+                </Row>
+                {/* {this.state.latitude?<div>
                 <Row>
                     <Col md={10}>
-                    {/* <Map center={[this.state.latitude, this.state.longitude]} zoom={9} width={600} height={400} onClick={this.mapChangeEvent}>
-    <Marker anchor={[this.state.latitude, this.state.longitude]} payload={1} onClick={({ event, anchor, payload }) => {
-        console.log(event,anchor,payload)
-    }} />
-    <Overlay anchor={[this.state.latitude, this.state.longitude]} offset={[120, 79]}>
-    </Overlay>
-    {
-        this.state.chosenlatitude?<Marker anchor={[this.state.chosenlatitude, this.state.chosenlongitude]} payload={2} onClick={({ event, anchor, payload }) => {
-            console.log(event,anchor,payload)
-        }} />:null
-    }
-  </Map>
-  <div>
-</div> */}
 <Row className="mv3">
                                 <Col>
                                 <Weather />
@@ -107,7 +100,7 @@ export default class Dashboard extends Component {
                     </Col>
                 </Row>
                 </div>:<div>  <Spinner animation="grow" variant="primary" /></div>
-}
+} */}
             </div>
         )
     }

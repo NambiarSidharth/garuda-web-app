@@ -3,8 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.6.1",
+    "@material-ui/icons": "^4.5.1",
     "axios": "^0.19.0",
     "canvasjs": "^1.8.1",
+    "chart.js": "^2.9.3",
+    "components": "^0.1.0",
     "firebase": "^7.2.3",
     "google-maps-react": "^2.0.2",
     "google-translate-api": "^2.3.0",
@@ -16,11 +20,13 @@
     "react": "^16.11.0",
     "react-animated-weather": "^3.0.0",
     "react-bootstrap": "^1.0.0-beta.14",
+    "react-chartjs-2": "^2.8.0",
     "react-countup": "^4.2.3",
     "react-dom": "^16.11.0",
     "react-map-gl": "^5.1.2",
     "react-map-gl-heatmap-overlay": "^1.1.4",
     "react-open-weather": "^0.5.2",
+    "react-perfect-scrollbar": "^1.5.3",
     "react-redux": "^7.1.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
@@ -31,7 +37,8 @@
     "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",
     "shards-react": "^1.0.3",
-    "tachyons": "^4.11.1"
+    "tachyons": "^4.11.1",
+    "theme": "^0.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
