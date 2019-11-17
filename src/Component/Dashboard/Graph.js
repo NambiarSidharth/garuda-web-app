@@ -1,13 +1,16 @@
 import React, { Component } from 'react'
 import faults from "./graphs/faults.gif"
 import CanvasJSReact from './canvasjs/canvasjs.react'
-import {Row,Col} from "react-bootstrap"
+import {Row,Col,Card} from "react-bootstrap"
 import A from "./graphs/A.png"
 import B from "./graphs/B.png"
 import C from "./graphs/C.png"
-import Death from "./graphs/death_c.png"
-import DrugAffects from "./graphs/drug_affects.png"
-import HeatMap from "./graphs/heatmapA.png"
+
+import Ct from "./graphs/Casualty_type_vs_Seatbelt.png"
+import HP from "./graphs/Helmet_vs Passenger_pos.png"
+import IS from "./graphs/Injury_vs_Seatbelt.png"
+import PA from "./graphs/Padestrian_loc_vs_Padestrian_action.png"
+
 export default class Graph extends Component {
     constructor(props) {
         super(props)
@@ -77,7 +80,7 @@ export default class Graph extends Component {
 				</Col>
 			</Row> */}
 			 {/* You can get reference to the chart instance as shown above using onRef. This allows you to access all chart properties and methods  */}
-		<Row>
+		{/* <Row>
 			<Col>
 			<select onChange={this.onChange} name="graph">
 				<option value="0">Accidents Occured vs Time</option>
@@ -85,22 +88,55 @@ export default class Graph extends Component {
 				<option value="2">Heat Map Accident- Driver Parameters</option>
 			</select>
 			</Col>
-		</Row>
-		{this.state.graph==="0"?<Row>
-			<Col>
+		</Row> */}
+		<Row className="mv2">
+		<Col>
+		<Card>
+			<Card.Body>
 			<img src={A} alt="graph" />
-			</Col>
-		</Row>:null}
-		{this.state.graph==="1"?<Row>
+			</Card.Body>
+		</Card>
+		</Col>
 		<Col>
+		<Card>
+			<Card.Body>
 			<img src={C} alt="graph" />
+			</Card.Body>
+		</Card>
+		</Col>
+		</Row>
+		<Row className="mv2">
+			<Col>
+			<Card>
+			<Card.Body>
+			<img src={HP} alt="graph" />
+			</Card.Body>
+			</Card>
 			</Col>
-		</Row>:null}
-		{this.state.graph==="2"?<Row>
+			<Col>
+			<Card>
+				<Card.Body>
+			<img src={IS} alt="graph" />
+			</Card.Body>
+			</Card>
+			</Col>
+		</Row>
+		<Row className="mv2">
 		<Col>
-			<img src={HeatMap} alt="graph" />
-			</Col>
-		</Row>:null}
+		<Card>
+			<Card.Body>
+			<img src={Ct} alt="graph" />
+			</Card.Body>
+		</Card>
+		</Col>
+		<Col>
+		<Card>
+			<Card.Body>
+			<img src={PA} alt="graph" />
+			</Card.Body>
+		</Card>
+		</Col>
+		</Row>
 7		</div>
 		);
 	}

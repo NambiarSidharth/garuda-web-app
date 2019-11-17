@@ -86,7 +86,7 @@ class Weather extends Component {
                     </Row>
                     <Row className="mt1"> 
             <Col>
-            <h6>current:{data.main.temp} &#8451;</h6>
+            <h6>Current Temperature : {data.main.temp} &#8451;</h6>
             </Col>
             </Row> 
             </div>

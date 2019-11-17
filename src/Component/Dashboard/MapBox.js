@@ -83,7 +83,7 @@ export default class MapBox extends Component {
 
       </NavItem>
       <NavItem >
-        <NavLink active={this.state.mapView===2?true:false} onClick={this.onSelect.bind(this,2)}>Heat Map</NavLink>
+        <NavLink active={this.state.mapView===2?true:false} onClick={this.onSelect.bind(this,2)}>Normal Map</NavLink>
       </NavItem>
     </Nav>
 

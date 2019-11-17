@@ -95,17 +95,8 @@ class Navigation extends Component {
     </ul>
 
    {isAuthenticated?<ul className="navbar-nav mr-auto ml5">
-      {/* <li className="nav-item ml5 mr2">
-       <Link to='/market' className='btn btn-primary hover-bg-dark-blue'>Market</Link>
-      </li>
-      <li  className="nav-item mh2">
-        <Link to='/cropCycle' className='btn btn-primary hover-bg-dark-blue'>Crop Cycle</Link>
-      </li>
-      <li  className="nav-item mh2">
-       <Link to='/plantDoc' className='btn btn-primary hover-bg-dark-blue'> Plant Doctor </Link>
-      </li> */}
-      <li onClick={this.logOutUser} className="nav-item mh2 btn btn-light hover-bg-dark-blue">
-        logout
+      <li className="nav-item ml5 mr2">
+       <Link to='/stats' className='btn btn-primary hover-bg-dark-blue'>Stats</Link>
       </li>
     </ul>:null}
     {/* <form className="form-inline my-2 my-lg-0">

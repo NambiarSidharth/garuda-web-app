@@ -8,10 +8,11 @@ import Navigation from "./Component/Common/Navigation"
 import Landing from "./Component/Common/Landing"
 import Dashboard from "./Component/Dashboard/Dashboard"
 import Store from "./Store/Store"
-import Dashboard1 from "./Component/Dash/Dashboard/Dashboard"
+// import Dashboard1 from "./Component/Dash/Dashboard/Dashboard"
 import PrivateRoute from "./Component/Common/PrivateRoute"
 import Reports from "./Component/Report/Reports"
 import Report from "./Component/Report/Report"
+import Stats from "./Component/Stats/Stats"
 import "tachyons"
 import "bootstrap/dist/css/bootstrap.min.css";
 import "shards-ui/dist/css/shards.min.css";
@@ -29,9 +30,10 @@ function App() {
         <Route exact path='/' component={Landing} />
         <Route exact path='/auth' component={Login} />
         <Route exact path='/dashboard' component={Dashboard} />
-        <Route exact path='/dash' component={Dashboard1} />
+        {/* <Route exact path='/dash' component={Dashboard1} /> */}
         <Route exact path='/reports' component={Reports} />
         <Route exact path='/reports/:id' component={Report} />
+        <Route exact path='/stats' component={Stats} />
         </div>
       </Router>
       </Provider>
