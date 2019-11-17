@@ -13,6 +13,7 @@ import PrivateRoute from "./Component/Common/PrivateRoute"
 import Reports from "./Component/Report/Reports"
 import Report from "./Component/Report/Report"
 import Stats from "./Component/Stats/Stats"
+import ReportData from "./Component/ReportData/ReportData"
 import "tachyons"
 import "bootstrap/dist/css/bootstrap.min.css";
 import "shards-ui/dist/css/shards.min.css";
@@ -34,6 +35,7 @@ function App() {
         <Route exact path='/reports' component={Reports} />
         <Route exact path='/reports/:id' component={Report} />
         <Route exact path='/stats' component={Stats} />
+        <Route exact path='/reportdata' component={ReportData} />
         </div>
       </Router>
       </Provider>

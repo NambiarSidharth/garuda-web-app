@@ -49,9 +49,9 @@ class Navigation extends Component {
         <a className="nav-link disabled" href="#">Disabled</a>
       </li>
        */}
-      {!isAuthenticated?<li className="nav-item">
+      {/* {!isAuthenticated?<li className="nav-item">
        <Link to='/auth'className='btn btn-primary'>Auth</Link>
-        </li>:null}
+        </li>:null} */}
     </ul>
     <ul className="navbar-nav mr-auto">
       {/* <li className="nav-item active">
@@ -94,11 +94,17 @@ class Navigation extends Component {
     <ul className="navbar-nav mr-auto">
     </ul>
 
-   {isAuthenticated?<ul className="navbar-nav mr-auto ml5">
+   {<ul className="navbar-nav mr-auto ml5">
+      <li className="nav-item ml5 mr2">
+       <Link to='/dashboard' className='btn btn-primary hover-bg-dark-blue'>Dashboard</Link>
+      </li>
       <li className="nav-item ml5 mr2">
        <Link to='/stats' className='btn btn-primary hover-bg-dark-blue'>Stats</Link>
       </li>
-    </ul>:null}
+      <li className="nav-item ml5 mr2">
+       <Link to='/reportdata' className='btn btn-primary hover-bg-dark-blue'>Inference</Link>
+      </li>
+    </ul>}
     {/* <form className="form-inline my-2 my-lg-0">
       <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form> */}
