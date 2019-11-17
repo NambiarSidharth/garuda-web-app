@@ -18,8 +18,8 @@ export default class Report extends Component {
              viewport: {
                 width: "100%",
                 height: 350,
-                latitude: 50.874,
-                longitude: 4.6947,
+                latitude: 12.9716,
+                longitude: 77.5946,
                 zoom: 13
               }
         }
@@ -29,8 +29,8 @@ export default class Report extends Component {
         let viewp = this.state.viewport
      firebase.database().ref('reports/'+id).once('value').then(snapshot=>{
         const data = snapshot.val()
-        // viewp.latitude = data.coordinates.latitude
-        // viewp.longitude = data.coordinates.longitude
+        viewp.latitude = data.coordinates.latitude
+        viewp.longitude = data.coordinates.longitude
         this.setState({report:data,viewport:viewp})
      })
      .catch(error=>{
@@ -58,11 +58,10 @@ export default class Report extends Component {
         onViewportChange={(viewport) => this.setState({viewport})}
         mapboxApiAccessToken={"pk.eyJ1IjoibmFtYmlhcnNpZGhhcnRoIiwiYSI6ImNrMzA2cTZwMDBhdmgzYnFzZmJuaTRkeTgifQ.MAnlhMbC3SBJfrNJ_DOPvw"}
         onClick={this.coordinateClick}
-
       >
-    <Marker latitude={50.874} longitude={4.6947}>
+    <Marker latitude={this.state.report.coordinates.latitude} longitude={this.state.report.coordinates.longitude}>
     <Button variant="danger">
-        AA
+        A
     </Button>
         </Marker>
         </ReactMapGL>

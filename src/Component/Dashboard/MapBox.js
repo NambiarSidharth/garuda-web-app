@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import ReactMapGL,{Marker} from 'react-map-gl';
+import ReactMapGL,{Marker,Popup} from 'react-map-gl';
 import Collision from "./subcomponent/car-collision.svg"
 import {firebase} from "../../utils/Firebase"
 
@@ -14,17 +14,19 @@ export default class MapBox extends Component {
     
         this.state = {
             viewport: {
-                width: 400,
+                width: "100%",
                 height: 350,
                 latitude: 12.9716,
                 longitude: 77.5946,
                 zoom: 13
               },
               mapView:1,
-              reports:null
+              reports:null,
+              selectedPoint:null
         }
         this.coordinateClick = this.coordinateClick.bind(this)
         this.onSelect = this.onSelect.bind(this)
+        this.selectPoint = this.selectPoint.bind(this)
     }
     componentDidMount(){
         let data = this.state.viewport;
@@ -32,6 +34,9 @@ export default class MapBox extends Component {
         // data.longitude = this.props.latitude;
 
         this.setState({viewport:data,reports:this.props.reports})
+    }
+    selectPoint(id){
+        this.setState({selectedPoint:id})
     }
     onSelect(num){
         this.setState({mapView:num})
@@ -46,11 +51,12 @@ export default class MapBox extends Component {
             markers=Object.keys(reports).map(obj=>{
                 console.log(reports[obj].coordinates)
               return reports[obj].coordinates?<Marker latitude={reports[obj].coordinates.latitude} longitude={reports[obj].coordinates.longitude}>
-      <Button variant="danger">
-          AA
+      <Button variant="danger" onClick={this.selectPoint.bind(this,obj)}>
+          
       </Button>
           </Marker>:null
             })
+            console.log(markers)
         }else{
             markers=null
         }
@@ -84,12 +90,17 @@ export default class MapBox extends Component {
                 
                  <ReactMapGL
         {...this.state.viewport}
-        // mapStyle={styleSheet}
+        mapStyle={styleSheet}
         onViewportChange={(viewport) => this.setState({viewport})}
         mapboxApiAccessToken={"pk.eyJ1IjoibmFtYmlhcnNpZGhhcnRoIiwiYSI6ImNrMzA2cTZwMDBhdmgzYnFzZmJuaTRkeTgifQ.MAnlhMbC3SBJfrNJ_DOPvw"}
             onClick={this.coordinateClick}
       >
           {markers}
+          {
+              this.state.selectedPoint?<Popup latitude={reports[this.state.selectedPoint].coordinates.latitude} longitude={reports[this.state.selectedPoint].coordinates.longitude}>
+    <p>{reports[this.state.selectedPoint].type}</p>
+                  </Popup>:null
+          }
         </ReactMapGL>
         {/* <HeatMap viewport={this.state.viewport} /> */}
       </CardBody>
